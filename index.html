@@ -181,7 +181,7 @@ footer a:hover{color:var(--ice)}
 
 <header>
   <nav class="wrap nav" aria-label="Main navigation">
-    <a class="brand" href="#home">M<i>.</i>U<i>.</i>K<i>.</i></a>
+    <a class="brand" href="#home" aria-label="Muhammad Umair Khan, home">M<i>.</i>U<i>.</i>K<i>.</i></a>
     <button class="menu" id="menu" aria-expanded="false" aria-controls="links">Menu</button>
     <div class="links" id="links">
       <a href="#about">About</a>
@@ -203,6 +203,7 @@ footer a:hover{color:var(--ice)}
       <div class="row">
         <a class="btn primary" href="#practice">Try the alert triage demo</a>
         <a class="btn" href="https://github.com/umair-khan-it" target="_blank" rel="noopener noreferrer">GitHub profile</a>
+        <a class="btn" href="https://www.linkedin.com/in/muhammad-umair-khan-seo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
 
@@ -234,7 +235,7 @@ footer a:hover{color:var(--ice)}
           <p class="rv">I believe in learning by doing. My goal is to build a strong foundation through structured study, hands-on labs, documented investigations, and practical projects that demonstrate what I can do.</p>
         </div>
         <aside class="id rv" aria-label="Profile summary">
-        <img class="avatar" src="photo.jpg" width="132" height="132" alt="Portrait of Muhammad Umair Khan in a navy suit" onerror="this.style.display='none'">
+          <img class="avatar" src="photo.jpg" width="132" height="132" alt="Portrait of Muhammad Umair Khan in a navy suit" onerror="this.style.display='none'">
           <h3>Muhammad Umair Khan</h3>
           <p>Software Engineering Graduate</p>
           <dl>
@@ -242,6 +243,7 @@ footer a:hover{color:var(--ice)}
             <div><dt>Career interest</dt><dd>Cybersecurity / SOC Analysis</dd></div>
             <div><dt>Based in</dt><dd>Pakistan</dd></div>
             <div><dt>GitHub</dt><dd><a href="https://github.com/umair-khan-it" target="_blank" rel="noopener noreferrer">umair-khan-it</a></dd></div>
+            <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/muhammad-umair-khan-seo/" target="_blank" rel="noopener noreferrer">Muhammad Umair Khan</a></dd></div>
           </dl>
         </aside>
       </div>
@@ -334,6 +336,7 @@ footer a:hover{color:var(--ice)}
           <a class="btn primary" href="mailto:umairkhan5uk5@gmail.com">Email me</a>
           <button class="btn" id="copy" type="button">Copy email address</button>
           <a class="btn" href="https://github.com/umair-khan-it" target="_blank" rel="noopener noreferrer">GitHub profile</a>
+          <a class="btn" href="https://www.linkedin.com/in/muhammad-umair-khan-seo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
     </div>
@@ -353,7 +356,7 @@ footer a:hover{color:var(--ice)}
 (()=>{
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const EMAIL='umairkhan5uk5@gmail.com', GH='https://github.com/umair-khan-it';
+const EMAIL='umairkhan5uk5@gmail.com', GH='https://github.com/umair-khan-it', LI='https://www.linkedin.com/in/muhammad-umair-khan-seo/';
 
 /* ---- animated network background: nodes drift, mouse links to nearby nodes, random nodes flare like alerts ---- */
 const cv=$('#net'),cx=cv.getContext('2d');let W,H,nodes=[],mouse={x:-999,y:-999};
@@ -412,13 +415,14 @@ if(!reduce){
 const out=$('#tout'),inp=$('#tin');
 const a=(h,t)=>`<a href="${h}" target="_blank" rel="noopener noreferrer">${t}</a>`;
 const cmds={
-  help:()=>`Commands: <b>about</b> <b>skills</b> <b>projects</b> <b>education</b> <b>contact</b> <b>github</b> <b>clear</b>`,
+  help:()=>`Commands: <b>about</b> <b>skills</b> <b>projects</b> <b>education</b> <b>contact</b> <b>github</b> <b>linkedin</b> <b>clear</b>`,
   about:()=>`Muhammad Umair Khan. Software Engineering graduate (University of Sialkot, 2026) building toward a SOC analyst role.`,
   skills:()=>`Focus areas: SOC fundamentals, alert triage, incident response, networking, Windows, Linux, SIEM concepts, log analysis.<br><span class="dim">Learning in progress, not a claim of professional proficiency.</span>`,
   projects:()=>`3 planned, 0 completed: Home SOC Lab, Phishing Email Analysis, SIEM Alert Investigation. Links will be added when each is finished.`,
   education:()=>`BS Software Engineering, University of Sialkot, completed 2026. No certifications listed yet.`,
   contact:()=>`Email: ${a('mailto:'+EMAIL,EMAIL)}`,
   github:()=>a(GH,GH),
+  linkedin:()=>a(LI,LI),
   clear:()=>{out.innerHTML='';return null;}
 };
 function print(h,cls){const d=document.createElement('div');if(cls)d.className=cls;d.innerHTML=h;out.appendChild(d);out.scrollTop=out.scrollHeight;}
