@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Muhammad Umair Khan — Software Engineering graduate pursuing cybersecurity, blue-team security, and SOC analysis.">
+  <title>Muhammad Umair Khan | Cybersecurity Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a2d;
+      --text: #f3f6fc;
+      --muted: #a7b2c8;
+      --accent: #66e3c4;
+      --border: #26334b;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, Arial, sans-serif;
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1050px, 90%); margin: auto; }
+    header {
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(11,16,32,.94);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+    nav {
+      min-height: 68px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .brand { font-weight: 750; letter-spacing: -.5px; }
+    .brand span, .accent { color: var(--accent); }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; color: var(--muted); }
+    .nav-links a:hover, .text-link:hover { color: var(--accent); }
+    .hero { padding: 105px 0 90px; }
+    .eyebrow { color: var(--accent); font-size: 14px; font-weight: 700; }
+    h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.1; letter-spacing: -2px; margin: 18px 0; }
+    h2 { font-size: 30px; letter-spacing: -1px; margin-top: 0; }
+    .intro { max-width: 680px; color: var(--muted); font-size: 18px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button {
+      padding: 11px 18px; border: 1px solid var(--border);
+      border-radius: 8px; font-weight: 650; font-size: 14px;
+      display: inline-block;
+    }
+    .button.primary { background: var(--accent); color: #07131a; border-color: var(--accent); }
+    .button:hover { transform: translateY(-2px); }
+    section { padding: 58px 0; border-top: 1px solid var(--border); }
+    .section-note { color: var(--muted); max-width: 650px; margin-top: -8px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+    .card { background: var(--panel); border: 1px solid var(--border); padding: 22px; border-radius: 12px; }
+    .card h3 { margin-top: 0; margin-bottom: 8px; font-size: 18px; }
+    .card p { color: var(--muted); font-size: 14px; margin-top: 0; }
+    .tag { display: inline-block; border: 1px solid var(--border); border-radius: 5px; padding: 3px 8px; margin: 4px 3px 0 0; font-size: 12px; color: var(--muted); }
+    .text-link { color: var(--accent); font-size: 14px; font-weight: 650; }
+    .contact { max-width: 700px; }
+    footer { border-top: 1px solid var(--border); padding: 24px 0; color: var(--muted); font-size: 13px; }
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding: 72px 0 60px; }
+      .nav-links { gap: 12px; font-size: 12px; }
+      .brand { font-size: 14px; }
+      h1 { letter-spacing: -1px; }
+    }
+    @media (max-width: 430px) {
+      .nav-links a:nth-child(2) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="brand" href="#home">Umair<span>.</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container hero" id="home">
+      <div class="eyebrow">SOFTWARE ENGINEERING · CYBERSECURITY</div>
+      <h1>Muhammad Umair Khan<span class="accent">.</span></h1>
+      <p class="intro">
+        Software Engineering graduate building practical cybersecurity
+        skills, with an interest in security operations, threat detection,
+        and blue-team analysis.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="#projects">Explore my projects</a>
+        <a class="button" href="https://github.com/umair-khan-it" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <h2>About me</h2>
+        <p class="section-note">
+          I have completed a Bachelor of Science in Software Engineering
+          and am preparing to advance my knowledge in cybersecurity.
+          My focus is on developing hands-on skills through structured
+          learning, security labs, and documented investigations.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2>Skills & learning</h2>
+        <p class="section-note">
+          Areas I am developing through study and practical exercises.
+          I will update this section as I gain experience.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h3>Security operations</h3>
+            <p>SOC workflows, alert triage, incident investigation, and security reporting.</p>
+            <span class="tag">SOC fundamentals</span>
+            <span class="tag">Blue team</span>
+          </article>
+          <article class="card">
+            <h3>Security foundations</h3>
+            <p>Networking, operating systems, security principles, and log analysis.</p>
+            <span class="tag">Networking</span>
+            <span class="tag">Linux / Windows</span>
+          </article>
+          <article class="card">
+            <h3>Tools & technologies</h3>
+            <p>Add tools here as you learn and can demonstrate them in a lab or project.</p>
+            <span class="tag">SIEM — learning</span>
+            <span class="tag">Python — update status</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <p class="section-note">
+          Practical work, lab notes, investigation reports, and lessons learned.
+          Replace these examples with your completed projects.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h3>Home SOC Lab</h3>
+            <p>Document a lab environment, collected logs, detection tests, and findings.</p>
+            <span class="tag">Lab project</span>
+            <p><span class="accent">Status:</span> Planned</p>
+          </article>
+          <article class="card">
+            <h3>Phishing Email Analysis</h3>
+            <p>Record how you examine suspicious email indicators and document a safe investigation.</p>
+            <span class="tag">Investigation</span>
+            <p><span class="accent">Status:</span> Planned</p>
+          </article>
+          <article class="card">
+            <h3>SIEM Alert Investigation</h3>
+            <p>Show an alert investigation with evidence, analysis, and recommended response steps.</p>
+            <span class="tag">Blue team</span>
+            <p><span class="accent">Status:</span> Planned</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="container">
+        <h2>Certifications & education</h2>
+        <p class="section-note">
+          Add your completed degree, verified certificates, training,
+          and relevant courses here. Include links when available.
+        </p>
+        <div class="card">
+          <h3>Bachelor of Science in Software Engineering</h3>
+          <p>University of Sialkot · Completed 2026</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact">
+        <h2>Let's connect</h2>
+        <p class="section-note">
+          I am interested in cybersecurity learning, practical projects,
+          and entry-level opportunities in security operations.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="mailto:YOUR-EMAIL@example.com">Email me</a>
+          <a class="button" href="https://github.com/umair-khan-it" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <!-- Add your LinkedIn URL here when ready. -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Muhammad Umair Khan · Built with HTML and CSS.
+    </div>
+  </footer>
+</body>
+</html>
