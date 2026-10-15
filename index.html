@@ -1,1056 +1,510 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muhammad Umair Khan | Cybersecurity Portfolio</title>
+<meta name="description" content="Muhammad Umair Khan, Software Engineering graduate pursuing cybersecurity, SOC analysis, and blue-team security. Explore my learning journey and projects.">
+<meta name="theme-color" content="#070b14">
+<meta property="og:title" content="Muhammad Umair Khan | Cybersecurity Portfolio">
+<meta property="og:description" content="Software Engineering graduate building toward SOC analysis and blue-team security.">
+<meta name="google-site-verification" content="JU06b0RhLgKk-pRnJlN9-QgFjctMpYC6ac53SR16klI">
+<link rel="icon" type="image/png" href="/favicon.png.png">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --ink:#070b14; --panel:#0e1626; --panel2:#131e33; --line:#223149;
+  --text:#e8eef8; --muted:#9fb0c8; --ice:#7fd8ff; --amber:#ffb454; --red:#ff6b7a; --ok:#6ee7a8;
+  --mono:ui-monospace,SFMono-Regular,"Cascadia Code",Menlo,Consolas,monospace;
+  --sans:"Segoe UI Variable Display","SF Pro Display",Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--ink);color:var(--text);font:16px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+::selection{background:var(--ice);color:var(--ink)}
+#net{position:fixed;inset:0;width:100%;height:100%;z-index:-2}
+.glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(127,216,255,.10),transparent 65%);will-change:transform}
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--ice),var(--amber));z-index:60}
+.wrap{width:min(1120px,calc(100% - 40px));margin-inline:auto}
+.skip{position:absolute;left:-9999px;top:8px;z-index:99;background:var(--ice);color:var(--ink);padding:8px 14px;border-radius:6px}
+.skip:focus{left:8px}
 
-  <meta name="description" content="Muhammad Umair Khan, Software Engineering graduate pursuing cybersecurity, SOC analysis, and blue-team security. Explore my learning journey and projects.">
-  <meta name="theme-color" content="#0a0f1c">
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(7,11,20,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:20px}
+.brand{font-weight:800;letter-spacing:-.5px;font-size:17px}
+.brand i{color:var(--amber);font-style:normal}
+.links{display:flex;align-items:center;gap:24px;font-size:14px;color:var(--muted)}
+.links a{padding:4px 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.links a:hover{color:var(--text)}
+.links a[aria-current=true]{color:var(--text);border-color:var(--ice)}
+.links .cta{border:1px solid var(--ice);color:var(--ice);padding:7px 14px;border-radius:8px}
+.links .cta:hover{background:var(--ice);color:var(--ink)}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 12px;font:inherit;font-size:14px;cursor:pointer}
 
-  <title>Muhammad Umair Khan | Cybersecurity Portfolio</title>
+/* hero */
+.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center;padding-block:70px}
+h1{margin:0 0 14px;font-size:clamp(42px,6.4vw,78px);line-height:1.02;letter-spacing:-3px;font-weight:800}
+.typed-line{font-size:clamp(18px,2.2vw,24px);color:var(--muted);margin:0 0 18px;min-height:1.6em}
+.typed-line b{color:var(--ice);font-weight:600}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--ice);vertical-align:-.15em;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{max-width:520px;color:var(--muted);margin:0 0 28px}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font:600 14px var(--sans);cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
+.btn:hover{transform:translateY(-2px);border-color:var(--ice)}
+.btn.primary{background:var(--ice);border-color:var(--ice);color:var(--ink)}
+.btn.primary:hover{background:#a8e6ff}
 
-  <link rel="icon" type="image/png" href="/favicon.png.png">
-<meta name="google-site-verification" content="JU06b0RhLgKk-pRnJlN9-QgFjctMpYC6ac53SR16klI" />
+/* terminal */
+.term{border:1px solid var(--line);border-radius:14px;background:rgba(10,16,28,.88);box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(127,216,255,.05);overflow:hidden;backdrop-filter:blur(6px)}
+.term-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);font:12px var(--mono);color:var(--muted)}
+.term-bar span{width:10px;height:10px;border-radius:50%;background:#2a3a55}
+.term-bar span:first-child{background:var(--red)} .term-bar span:nth-child(2){background:var(--amber)} .term-bar span:nth-child(3){background:var(--ok)}
+.term-bar em{font-style:normal;margin-left:8px}
+#tout{height:290px;overflow-y:auto;padding:14px 16px 4px;font:13px/1.65 var(--mono);color:#cfe0f5}
+#tout div{margin-bottom:6px;word-break:break-word}
+#tout .cmd{color:var(--ice)}
+#tout b{color:var(--amber);font-weight:600}
+#tout a{color:var(--ice);text-decoration:underline;text-underline-offset:3px}
+#tout .dim{color:var(--muted)}
+.tline{display:flex;align-items:center;gap:8px;padding:6px 16px 12px;font:13px var(--mono)}
+.tline label{color:var(--ice)}
+#tin{flex:1;min-width:0;background:none;border:0;color:var(--text);font:inherit;outline-offset:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 14px}
+.chip{font:12px var(--mono);color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:3px 9px;cursor:pointer;transition:color .15s,border-color .15s}
+.chip:hover{color:var(--ice);border-color:var(--ice)}
+
+/* sections */
+section{padding-block:92px;border-top:1px solid var(--line)}
+h2{margin:0 0 12px;font-size:clamp(28px,4vw,40px);line-height:1.2;letter-spacing:-1.3px}
+.sub{max-width:640px;color:var(--muted);margin:0 0 38px}
+.about{display:grid;grid-template-columns:1.5fr .8fr;gap:40px;align-items:start}
+.about p{color:var(--muted);margin:0 0 16px}
+.about strong{color:var(--text)}
+.id{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:24px}
+.id h3{margin:0;font-size:18px}
+.id>p{margin:2px 0 14px;font-size:13px}
+.id dl{margin:0}
+.id div{padding:10px 0;border-top:1px solid var(--line)}
+.id dt{font-size:12px;color:var(--muted)}
+.id dd{margin:0;font-size:14px;font-weight:600}
+.id dd a{color:var(--ice)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:24px;transition:border-color .2s}
+.card:hover{border-color:#37607a}
+.card h3{margin:0 0 8px;font-size:18px;letter-spacing:-.3px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .18s ease-out,border-color .2s}
+.tilt::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .2s;background:radial-gradient(260px circle at var(--gx,50%) var(--gy,50%),rgba(127,216,255,.13),transparent 60%)}
+.tilt:hover::after{opacity:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tag{font-size:12px;color:#c5d3e6;border:1px solid var(--line);border-radius:6px;padding:2px 9px}
+.note{margin-top:18px;padding:14px 18px;border:1px dashed var(--line);border-radius:10px;color:var(--muted);font-size:14px}
+.note strong{color:var(--ice)}
+
+/* triage demo */
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.alert{border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;background:var(--panel);padding:18px 20px}
+.alert.high{border-left-color:var(--red)}
+.alert.ok{border-color:rgba(110,231,168,.5);border-left-color:var(--ok)}
+.alert.bad{border-color:rgba(255,107,122,.5);border-left-color:var(--red)}
+.sev{font:12px var(--mono);color:var(--amber)}
+.alert.high .sev{color:var(--red)}
+.alert p{margin:6px 0 14px;font-size:15px}
+.alert .row{gap:8px}
+.alert .btn{min-height:38px;padding:6px 14px;font-size:13px}
+.alert .btn[disabled]{opacity:.45;cursor:default;transform:none}
+.why{margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.why b{color:var(--text)}
+.score{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px;color:var(--muted);font-size:14px}
+.score strong{color:var(--ice);font-family:var(--mono)}
+
+/* project track */
+.pcard{display:flex;flex-direction:column;min-height:300px}
+.pcard h3{margin-top:4px}
+.track{display:flex;align-items:center;margin:0 0 18px;font-size:11px;color:var(--muted)}
+.track span{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;position:relative}
+.track span::before{content:"";width:10px;height:10px;border-radius:50%;border:2px solid var(--line);background:var(--ink);position:relative;z-index:1}
+.track span::after{content:"";position:absolute;top:4px;left:50%;width:100%;height:2px;background:var(--line)}
+.track span:last-child::after{display:none}
+.track .on{color:var(--amber)}
+.track .on::before{border-color:var(--amber);background:var(--amber);animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,180,84,.55)}100%{box-shadow:0 0 0 10px rgba(255,180,84,0)}}
+.pcard .foot{margin-top:auto;padding-top:18px;font-size:13px;color:var(--muted)}
+.pcard .foot b{color:var(--amber);font-weight:600}
+
+.edu{display:flex;gap:18px;align-items:flex-start}
+.edu h3{margin:0 0 4px}
+.contact{border:1px solid #2b4a5c;border-radius:20px;padding:clamp(26px,5vw,52px);background:radial-gradient(ellipse at 100% 0%,rgba(127,216,255,.12),transparent 50%),var(--panel)}
+.contact p{max-width:600px;color:var(--muted);margin:0 0 26px}
+footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+footer a:hover{color:var(--ice)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;background:var(--ice);color:var(--ink);font-weight:600;font-size:14px;padding:10px 18px;border-radius:10px;transition:.25s;z-index:80;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.js .rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease var(--d,0s),transform .6s ease var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .tilt.rv.in{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding-block:56px}
+  .about,.demo{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:680px){
+  .menu{display:block}
+  .links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:flex-start;gap:14px;padding:18px 20px;background:rgba(7,11,20,.97);border-bottom:1px solid var(--line)}
+  .links.open{display:flex}
+  .grid{grid-template-columns:1fr}
+  h1{letter-spacing:-2px}
+  section{padding-block:68px}
+  #tout{height:250px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
 </head>
-
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #0a0f1c;
-      --surface: #101827;
-      --surface-hover: #152136;
-      --text: #f1f5fb;
-      --muted: #a3afc3;
-      --accent: #63e6c5;
-      --accent-soft: rgba(99, 230, 197, 0.10);
-      --border: #243148;
-      --max-width: 1100px;
-      --radius: 16px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-    }
-
-    body {
-      margin: 0;
-      background:
-        radial-gradient(ellipse at 85% 0%, rgba(32, 92, 94, 0.13), transparent 38%),
-        var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-        BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 16px;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    a:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 5px;
-      border-radius: 4px;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    ::selection {
-      color: var(--bg);
-      background: var(--accent);
-    }
-
-    .container {
-      width: min(var(--max-width), calc(100% - 44px));
-      margin-inline: auto;
-    }
-
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: 10px;
-      z-index: 100;
-      padding: 10px 16px;
-      background: var(--accent);
-      color: var(--bg);
-    }
-
-    .skip-link:focus {
-      left: 10px;
-    }
-
-    /* Navigation */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(10, 15, 28, 0.91);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav {
-      min-height: 76px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .brand {
-      font-weight: 800;
-      font-size: 17px;
-      letter-spacing: -0.6px;
-      white-space: nowrap;
-    }
-
-    .brand-mark {
-      color: var(--accent);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 27px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .nav-links a {
-      transition: color 160ms ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .nav-links .nav-contact {
-      color: var(--accent);
-      border: 1px solid rgba(99, 230, 197, 0.4);
-      padding: 8px 13px;
-      border-radius: 8px;
-    }
-
-    /* Hero */
-
-    .hero {
-      min-height: 570px;
-      display: flex;
-      align-items: center;
-      padding-block: 105px 100px;
-    }
-
-    .hero-content {
-      max-width: 820px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 750;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 14px rgba(99, 230, 197, 0.45);
-    }
-
-    h1 {
-      max-width: 850px;
-      margin: 23px 0 20px;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.08;
-      letter-spacing: -3.5px;
-      font-weight: 800;
-    }
-
-    .gradient-text {
-      color: var(--accent);
-    }
-
-    .hero-description {
-      max-width: 660px;
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(16px, 2vw, 19px);
-      line-height: 1.9;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-      margin-top: 33px;
-    }
-
-    .button {
-      min-height: 46px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 11px 18px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      font-size: 14px;
-      font-weight: 700;
-      transition: background 160ms ease, border-color 160ms ease,
-        transform 160ms ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent);
-    }
-
-    .button-primary {
-      color: #07151a;
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .button-primary:hover {
-      background: #8af1d8;
-      border-color: #8af1d8;
-    }
-
-    .button-secondary {
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 22px;
-      margin-top: 34px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .hero-meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .meta-mark {
-      color: var(--accent);
-    }
-
-    /* Sections */
-
-    .section {
-      padding-block: 82px;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-heading {
-      margin-bottom: 35px;
-    }
-
-    .section-label {
-      display: block;
-      margin-bottom: 10px;
-      color: var(--accent);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 39px);
-      line-height: 1.25;
-      letter-spacing: -1.4px;
-    }
-
-    .section-description {
-      max-width: 680px;
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    /* About */
-
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1.5fr 0.8fr;
-      gap: 38px;
-      align-items: start;
-    }
-
-    .about-copy p {
-      margin: 0 0 16px;
-      color: var(--muted);
-    }
-
-    .about-copy strong {
-      color: var(--text);
-      font-weight: 650;
-    }
-
-    .profile-card {
-      padding: 25px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(145deg, var(--surface), #0d1422);
-    }
-
-    .profile-initials {
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
-      border: 1px solid rgba(99, 230, 197, 0.35);
-      border-radius: 15px;
-      color: var(--accent);
-      background: var(--accent-soft);
-      font-size: 19px;
-      font-weight: 800;
-    }
-
-    .profile-card h3 {
-      margin: 0;
-      font-size: 18px;
-    }
-
-    .profile-card > p {
-      margin: 5px 0 19px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .profile-detail {
-      padding-block: 11px;
-      border-top: 1px solid var(--border);
-    }
-
-    .profile-detail small {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .profile-detail span {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    /* Skills */
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 17px;
-    }
-
-    .card {
-      min-width: 0;
-      padding: 25px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface);
-      transition: border-color 180ms ease, transform 180ms ease;
-    }
-
-    .card:hover {
-      border-color: #3d6c6c;
-      transform: translateY(-3px);
-    }
-
-    .card-icon {
-      width: 43px;
-      height: 43px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 19px;
-      border: 1px solid rgba(99, 230, 197, 0.22);
-      border-radius: 12px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 19px;
-      font-weight: 800;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 17px;
-      letter-spacing: -0.3px;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 17px;
-    }
-
-    .tag {
-      padding: 4px 9px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: #c5d0df;
-      font-size: 11px;
-    }
-
-    .learning-note {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-top: 20px;
-      padding: 17px 19px;
-      border: 1px solid rgba(99, 230, 197, 0.2);
-      border-radius: 10px;
-      background: rgba(99, 230, 197, 0.045);
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .learning-note strong {
-      color: var(--accent);
-    }
-
-    /* Projects */
-
-    .project-card {
-      display: flex;
-      flex-direction: column;
-      min-height: 290px;
-    }
-
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 17px;
-    }
-
-    .project-top .card-icon {
-      flex-shrink: 0;
-      margin: 0;
-    }
-
-    .project-status {
-      display: inline-block;
-      padding: 4px 8px;
-      border: 1px solid #66563a;
-      border-radius: 6px;
-      color: #edc98b;
-      background: rgba(237, 201, 139, 0.06);
-      font-size: 10px;
-      font-weight: 750;
-      white-space: nowrap;
-    }
-
-    .project-card h3 {
-      font-size: 18px;
-    }
-
-    .project-card .tags {
-      margin-top: 15px;
-    }
-
-    .project-footer {
-      margin-top: auto;
-      padding-top: 22px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .project-footer span {
-      color: #edc98b;
-    }
-
-    /* Education */
-
-    .education-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      padding: 27px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface);
-    }
-
-    .education-card .card-icon {
-      flex-shrink: 0;
-      margin: 0;
-    }
-
-    .education-card h3 {
-      margin: 0 0 6px;
-      font-size: 18px;
-    }
-
-    .education-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .education-note {
-      margin-top: 18px !important;
-      font-size: 12px !important;
-    }
-
-    .credentials-note {
-      margin-top: 20px;
-      padding: 18px 20px;
-      border: 1px dashed var(--border);
-      border-radius: 10px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* Contact */
-
-    .contact-panel {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(27px, 5vw, 52px);
-      border: 1px solid #2d4b55;
-      border-radius: 20px;
-      background:
-        radial-gradient(ellipse at 100% 0%, rgba(99, 230, 197, 0.11), transparent 45%),
-        var(--surface);
-    }
-
-    .contact-panel h2 {
-      max-width: 650px;
-    }
-
-    .contact-panel > p {
-      max-width: 620px;
-      margin: 15px 0 0;
-      color: var(--muted);
-    }
-
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .contact-email {
-      overflow-wrap: anywhere;
-    }
-
-    /* Footer */
-
-    footer {
-      padding-block: 25px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .footer-content a:hover {
-      color: var(--accent);
-    }
-
-    /* Responsive */
-
-    @media (max-width: 850px) {
-      .about-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .profile-card {
-        max-width: 520px;
-      }
-
-      .card-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .hero {
-        min-height: auto;
-        padding-block: 85px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        width: min(100% - 32px, var(--max-width));
-      }
-
-      .nav {
-        min-height: 66px;
-        align-items: flex-start;
-        flex-direction: column;
-        justify-content: center;
-        gap: 8px;
-        padding-block: 12px;
-      }
-
-      .brand {
-        font-size: 15px;
-      }
-
-      .nav-links {
-        width: 100%;
-        gap: 18px;
-        overflow-x: auto;
-        padding-bottom: 2px;
-        font-size: 12px;
-      }
-
-      .nav-links .nav-contact {
-        padding: 2px 8px;
-      }
-
-      .hero {
-        padding-block: 75px 65px;
-      }
-
-      h1 {
-        font-size: clamp(39px, 11vw, 58px);
-        letter-spacing: -2px;
-      }
-
-      .hero-description {
-        font-size: 16px;
-      }
-
-      .hero-meta {
-        flex-direction: column;
-        gap: 7px;
-      }
-
-      .section {
-        padding-block: 62px;
-      }
-
-      .card-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        padding: 23px;
-      }
-
-      .project-card {
-        min-height: 0;
-      }
-
-      .education-card {
-        padding: 21px;
-        gap: 14px;
-      }
-
-      .footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-      }
-    }
-  </style>
-</head>
-
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="glow" id="glow" aria-hidden="true"></div>
+<div class="progress" id="bar" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <nav class="container nav" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Muhammad Umair Khan, home">
-        Muhammad Umair Khan<span class="brand-mark">.</span>
-      </a>
-
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-        <a class="nav-contact" href="#contact">Contact ↗</a>
-      </div>
-    </nav>
-  </header>
-
-  <main id="main">
-    <!-- HERO -->
-    <section class="container hero" id="home">
-      <div class="hero-content">
-        <div class="eyebrow">
-          <span class="status-dot" aria-hidden="true"></span>
-          Software Engineering · Cybersecurity
-        </div>
-
-        <h1>
-          Muhammad<br>
-          Umair Khan<span class="gradient-text">.</span>
-        </h1>
-
-        <p class="hero-description">
-          Software Engineering graduate developing practical cybersecurity
-          skills, with a focus on Security Operations Center (SOC) analysis,
-          threat detection, and blue-team security.
-        </p>
-
-        <div class="hero-actions">
-          <a class="button button-primary" href="#projects">
-            Explore my projects <span aria-hidden="true">↘</span>
-          </a>
-
-          <a class="button button-secondary"
-             href="https://github.com/umair-khan-it"
-             target="_blank"
-             rel="noopener noreferrer">
-            GitHub profile <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-
-        <div class="hero-meta">
-          <span><span class="meta-mark" aria-hidden="true">◆</span> BS Software Engineering</span>
-          <span><span class="meta-mark" aria-hidden="true">◆</span> Cybersecurity learning journey</span>
-          <span><span class="meta-mark" aria-hidden="true">◆</span> Aspiring SOC Analyst</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-label">01 / About</span>
-          <h2>A little about me.</h2>
-        </div>
-
-        <div class="about-layout">
-          <div class="about-copy">
-            <p>
-              I am <strong>Muhammad Umair Khan</strong>, a Software Engineering
-              graduate from the University of Sialkot, Pakistan. I am building
-              my next career chapter around cybersecurity and information security.
-            </p>
-
-            <p>
-              My current interests include understanding how security incidents
-              happen, analysing logs and alerts, investigating suspicious activity,
-              and learning how security teams detect and respond to threats.
-            </p>
-
-            <p>
-              I believe in learning by doing. My goal is to build a strong
-              foundation through structured study, hands-on labs, documented
-              investigations, and practical projects that demonstrate what I
-              can do.
-            </p>
-          </div>
-
-          <aside class="profile-card" aria-label="Professional profile">
-            <div class="profile-initials" aria-hidden="true">UK</div>
-            <h3>Muhammad Umair Khan</h3>
-            <p>Software Engineering Graduate</p>
-
-            <div class="profile-detail">
-              <small>Education</small>
-              <span>BS Software Engineering</span>
-            </div>
-
-            <div class="profile-detail">
-              <small>Career interest</small>
-              <span>Cybersecurity / SOC Analysis</span>
-            </div>
-
-            <div class="profile-detail">
-              <small>Based in</small>
-              <span>Pakistan</span>
-            </div>
-
-            <div class="profile-detail">
-              <small>GitHub</small>
-              <span>
-                <a href="https://github.com/umair-khan-it"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                  umair-khan-it ↗
-                </a>
-              </span>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section class="section" id="skills">
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-label">02 / Skills</span>
-          <h2>My technical direction.</h2>
-          <p class="section-description">
-            The areas below represent my learning focus. I will expand this
-            section with specific tools and skills as I gain and demonstrate
-            practical experience.
-          </p>
-        </div>
-
-        <div class="card-grid">
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">01</div>
-            <h3>SOC & Blue Team</h3>
-            <p>
-              Learning security monitoring, alert triage, incident response
-              workflows, and how analysts investigate suspicious activity.
-            </p>
-            <div class="tags">
-              <span class="tag">SOC fundamentals</span>
-              <span class="tag">Alert triage</span>
-              <span class="tag">Incident response</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">02</div>
-            <h3>Networking & Systems</h3>
-            <p>
-              Building foundational knowledge of network communication,
-              operating systems, system logs, and security principles.
-            </p>
-            <div class="tags">
-              <span class="tag">Networking</span>
-              <span class="tag">Windows</span>
-              <span class="tag">Linux</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">03</div>
-            <h3>Security Tools</h3>
-            <p>
-              Working toward practical familiarity with SIEM platforms,
-              log analysis, investigation tools, and security documentation.
-            </p>
-            <div class="tags">
-              <span class="tag">SIEM concepts</span>
-              <span class="tag">Log analysis</span>
-              <span class="tag">Security reports</span>
-            </div>
-          </article>
-        </div>
-
-        <div class="learning-note">
-          <span aria-hidden="true">↗</span>
-          <div>
-            <strong>Learning in progress.</strong>
-            These are focus areas, not a claim of professional proficiency.
-            Specific tools and skills will be listed as I practise and can
-            demonstrate them through projects.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-label">03 / Projects</span>
-          <h2>Practical work, in progress.</h2>
-          <p class="section-description">
-            I plan to use these projects to turn theory into practical skills.
-            Each project will be updated with evidence, findings, and a
-            repository or report link after the work is completed.
-          </p>
-        </div>
-
-        <div class="card-grid">
-          <article class="card project-card">
-            <div class="project-top">
-              <div class="card-icon" aria-hidden="true">⌘</div>
-              <span class="project-status">Planned</span>
-            </div>
-
-            <h3>Home SOC Lab</h3>
-            <p>
-              Build a small security monitoring lab, explore system logs,
-              test detection scenarios, and document the setup and findings.
-            </p>
-
-            <div class="tags">
-              <span class="tag">Security monitoring</span>
-              <span class="tag">Logs</span>
-              <span class="tag">Lab documentation</span>
-            </div>
-
-            <div class="project-footer">
-              <span>Not yet completed</span> · Project plan
-            </div>
-          </article>
-
-          <article class="card project-card">
-            <div class="project-top">
-              <div class="card-icon" aria-hidden="true">✉</div>
-              <span class="project-status">Planned</span>
-            </div>
-
-            <h3>Phishing Email Analysis</h3>
-            <p>
-              Practise analysing a safe sample email, examining its headers
-              and indicators, and writing an evidence-based investigation report.
-            </p>
-
-            <div class="tags">
-              <span class="tag">Email security</span>
-              <span class="tag">Indicators</span>
-              <span class="tag">Investigation</span>
-            </div>
-
-            <div class="project-footer">
-              <span>Not yet completed</span> · Project plan
-            </div>
-          </article>
-
-          <article class="card project-card">
-            <div class="project-top">
-              <div class="card-icon" aria-hidden="true">⌕</div>
-              <span class="project-status">Planned</span>
-            </div>
-
-            <h3>SIEM Alert Investigation</h3>
-            <p>
-              Investigate a sample security alert, correlate available log
-              evidence, explain the findings, and recommend appropriate
-              next steps.
-            </p>
-
-            <div class="tags">
-              <span class="tag">SIEM concepts</span>
-              <span class="tag">Alert investigation</span>
-              <span class="tag">Reporting</span>
-            </div>
-
-            <div class="project-footer">
-              <span>Not yet completed</span> · Project plan
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="section" id="education">
-      <div class="container">
-        <div class="section-heading">
-          <span class="section-label">04 / Education</span>
-          <h2>Education & credentials.</h2>
-          <p class="section-description">
-            My academic foundation and a space for verified certifications
-            and relevant training.
-          </p>
-        </div>
-
-        <article class="education-card">
-          <div class="card-icon" aria-hidden="true">ED</div>
-          <div>
-            <h3>Bachelor of Science in Software Engineering</h3>
-            <p>University of Sialkot · Pakistan</p>
-            <p class="education-note">
-              Completed in 2026. Interested in progressing to postgraduate
-              study in cybersecurity.
-            </p>
-          </div>
-        </article>
-
-        <div class="credentials-note">
-          <strong>Certifications & training:</strong>
-          This section will be updated with completed courses, verified
-          certificates, and relevant training as they are earned. No
-          unearned certifications are listed.
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-panel">
-          <span class="section-label">05 / Contact</span>
-          <h2>Let's connect and learn.</h2>
-
-          <p>
-            I welcome connections related to cybersecurity learning,
-            practical projects, professional development, and suitable
-            entry-level opportunities in security operations.
-          </p>
-
-          <div class="contact-links">
-            <a class="button button-primary"
-               href="mailto:umairkhan5uk5@gmail.com">
-              Email me <span aria-hidden="true">↗</span>
-            </a>
-
-            <a class="button button-secondary"
-               href="https://github.com/umair-khan-it"
-               target="_blank"
-               rel="noopener noreferrer">
-              GitHub profile <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-content">
-      <span>© 2026 Muhammad Umair Khan</span>
-      <span>Built with HTML & CSS · Hosted on GitHub Pages</span>
-      <a href="#home">Back to top ↑</a>
+<header>
+  <nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="#home">Umair Khan<i>.</i></a>
+    <button class="menu" id="menu" aria-expanded="false" aria-controls="links">Menu</button>
+    <div class="links" id="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#practice">Practice</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a class="cta" href="#contact">Contact</a>
     </div>
-  </footer>
+  </nav>
+</header>
+
+<main id="main">
+  <div class="wrap hero" id="home">
+    <div>
+      <h1>Muhammad<br>Umair Khan</h1>
+      <p class="typed-line">Currently learning <b id="typed">SOC analysis.</b><span class="caret" aria-hidden="true"></span></p>
+      <p class="lead">Software Engineering graduate developing practical cybersecurity skills, with a focus on Security Operations Center (SOC) analysis, threat detection, and blue-team security.</p>
+      <div class="row">
+        <a class="btn primary" href="#practice">Try the alert triage demo</a>
+        <a class="btn" href="https://github.com/umair-khan-it" target="_blank" rel="noopener noreferrer">GitHub profile</a>
+      </div>
+    </div>
+
+    <div class="term" role="region" aria-label="Interactive terminal">
+      <div class="term-bar"><span></span><span></span><span></span><em>umair@portfolio: interactive</em></div>
+      <div id="tout" aria-live="polite"></div>
+      <form class="tline" id="tform" autocomplete="off">
+        <label for="tin">$</label>
+        <input id="tin" type="text" spellcheck="false" autocapitalize="off" placeholder="type a command, e.g. help" aria-label="Terminal command">
+      </form>
+      <div class="chips" id="chips">
+        <button class="chip" data-cmd="about">about</button>
+        <button class="chip" data-cmd="skills">skills</button>
+        <button class="chip" data-cmd="projects">projects</button>
+        <button class="chip" data-cmd="education">education</button>
+        <button class="chip" data-cmd="contact">contact</button>
+        <button class="chip" data-cmd="clear">clear</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <h2 class="rv">A little about me.</h2>
+      <div class="about">
+        <div>
+          <p class="rv">I am <strong>Muhammad Umair Khan</strong>, a Software Engineering graduate from the University of Sialkot, Pakistan. I am building my next career chapter around cybersecurity and information security.</p>
+          <p class="rv">My current interests include understanding how security incidents happen, analysing logs and alerts, investigating suspicious activity, and learning how security teams detect and respond to threats.</p>
+          <p class="rv">I believe in learning by doing. My goal is to build a strong foundation through structured study, hands-on labs, documented investigations, and practical projects that demonstrate what I can do.</p>
+        </div>
+        <aside class="id rv" aria-label="Profile summary">
+          <h3>Muhammad Umair Khan</h3>
+          <p>Software Engineering Graduate</p>
+          <dl>
+            <div><dt>Education</dt><dd>BS Software Engineering</dd></div>
+            <div><dt>Career interest</dt><dd>Cybersecurity / SOC Analysis</dd></div>
+            <div><dt>Based in</dt><dd>Pakistan</dd></div>
+            <div><dt>GitHub</dt><dd><a href="https://github.com/umair-khan-it" target="_blank" rel="noopener noreferrer">umair-khan-it</a></dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2 class="rv">My technical direction.</h2>
+      <p class="sub rv">These are my learning focus areas. I will list specific tools and skills only once I have used them in a project and can show the evidence.</p>
+      <div class="grid">
+        <article class="card tilt rv">
+          <h3>SOC and blue team</h3>
+          <p>Learning security monitoring, alert triage, incident response workflows, and how analysts investigate suspicious activity.</p>
+          <div class="tags"><span class="tag">SOC fundamentals</span><span class="tag">Alert triage</span><span class="tag">Incident response</span></div>
+        </article>
+        <article class="card tilt rv" style="--d:.1s">
+          <h3>Networking and systems</h3>
+          <p>Building foundational knowledge of network communication, operating systems, system logs, and security principles.</p>
+          <div class="tags"><span class="tag">Networking</span><span class="tag">Windows</span><span class="tag">Linux</span></div>
+        </article>
+        <article class="card tilt rv" style="--d:.2s">
+          <h3>Security tools</h3>
+          <p>Working toward practical familiarity with SIEM platforms, log analysis, investigation tools, and security documentation.</p>
+          <div class="tags"><span class="tag">SIEM concepts</span><span class="tag">Log analysis</span><span class="tag">Security reports</span></div>
+        </article>
+      </div>
+      <div class="note rv"><strong>Learning in progress.</strong> These are focus areas, not a claim of professional proficiency.</div>
+    </div>
+  </section>
+
+  <section id="practice">
+    <div class="wrap">
+      <h2 class="rv">Practice: triage four alerts.</h2>
+      <p class="sub rv">Decide whether each alert needs escalation or can be closed as benign. The data is made up for practice and is not real incident work. Real triage also needs asset context, history, and your team's runbook.</p>
+      <div class="demo" id="demo"></div>
+      <div class="score"><span id="score" aria-live="polite">Score: <strong>0 / 0</strong></span><button class="btn" id="reset" type="button">Reset demo</button></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2 class="rv">Practical work, in progress.</h2>
+      <p class="sub rv">None of these are finished yet. Each card will link to a repository or written report once the work is complete.</p>
+      <div class="grid">
+        <article class="card pcard tilt rv">
+          <div class="track" aria-label="Status: planned"><span class="on">Planned</span><span>Building</span><span>Published</span></div>
+          <h3>Home SOC Lab</h3>
+          <p>Build a small security monitoring lab, explore system logs, test detection scenarios, and document the setup and findings.</p>
+          <div class="tags"><span class="tag">Security monitoring</span><span class="tag">Logs</span><span class="tag">Lab documentation</span></div>
+          <div class="foot"><b>Not yet completed.</b> Project plan only.</div>
+        </article>
+        <article class="card pcard tilt rv" style="--d:.1s">
+          <div class="track" aria-label="Status: planned"><span class="on">Planned</span><span>Building</span><span>Published</span></div>
+          <h3>Phishing Email Analysis</h3>
+          <p>Analyse a safe sample email, examine its headers and indicators, and write an evidence-based investigation report.</p>
+          <div class="tags"><span class="tag">Email security</span><span class="tag">Indicators</span><span class="tag">Investigation</span></div>
+          <div class="foot"><b>Not yet completed.</b> Project plan only.</div>
+        </article>
+        <article class="card pcard tilt rv" style="--d:.2s">
+          <div class="track" aria-label="Status: planned"><span class="on">Planned</span><span>Building</span><span>Published</span></div>
+          <h3>SIEM Alert Investigation</h3>
+          <p>Investigate a sample security alert, correlate available log evidence, explain the findings, and recommend next steps.</p>
+          <div class="tags"><span class="tag">SIEM concepts</span><span class="tag">Alert investigation</span><span class="tag">Reporting</span></div>
+          <div class="foot"><b>Not yet completed.</b> Project plan only.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <h2 class="rv">Education and credentials.</h2>
+      <article class="card rv edu">
+        <div>
+          <h3>Bachelor of Science in Software Engineering</h3>
+          <p>University of Sialkot, Pakistan. Completed in 2026. Interested in postgraduate study in cybersecurity.</p>
+        </div>
+      </article>
+      <div class="note rv"><strong>Certifications and training:</strong> this section will be updated with completed courses and verified certificates as they are earned. No unearned certifications are listed.</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact rv">
+        <h2>Let's connect and learn.</h2>
+        <p>I welcome connections related to cybersecurity learning, practical projects, professional development, and suitable entry-level opportunities in security operations.</p>
+        <div class="row">
+          <a class="btn primary" href="mailto:umairkhan5uk5@gmail.com">Email me</a>
+          <button class="btn" id="copy" type="button">Copy email address</button>
+          <a class="btn" href="https://github.com/umair-khan-it" target="_blank" rel="noopener noreferrer">GitHub profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Muhammad Umair Khan</span>
+    <span>Built with HTML, CSS and JavaScript. Hosted on GitHub Pages.</span>
+    <a href="#home">Back to top</a>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(()=>{
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const EMAIL='umairkhan5uk5@gmail.com', GH='https://github.com/umair-khan-it';
+
+/* ---- animated network background: nodes drift, mouse links to nearby nodes, random nodes flare like alerts ---- */
+const cv=$('#net'),cx=cv.getContext('2d');let W,H,nodes=[],mouse={x:-999,y:-999};
+function size(){
+  const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+  cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
+  const n=Math.min(85,Math.round(W*H/17000));
+  nodes=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,a:0}));
+}
+function frame(){
+  cx.clearRect(0,0,W,H);
+  for(const n of nodes){
+    if(!reduce){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;}
+    if(n.a>0)n.a=Math.max(0,n.a-.012);
+  }
+  for(let i=0;i<nodes.length;i++){
+    const a=nodes[i];
+    for(let j=i+1;j<nodes.length;j++){
+      const b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+      if(d<135){
+        const hot=Math.max(a.a,b.a),al=(1-d/135)*.22;
+        cx.strokeStyle=hot>0?`rgba(255,180,84,${al+hot*.35})`:`rgba(127,216,255,${al})`;
+        cx.lineWidth=1;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke();
+      }
+    }
+    const md=Math.hypot(a.x-mouse.x,a.y-mouse.y);
+    if(md<170){cx.strokeStyle=`rgba(127,216,255,${(1-md/170)*.55})`;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(mouse.x,mouse.y);cx.stroke();}
+    cx.fillStyle=a.a>0?'#ffb454':'rgba(127,216,255,.75)';
+    cx.beginPath();cx.arc(a.x,a.y,a.a>0?2.6:1.6,0,7);cx.fill();
+    if(a.a>0){cx.strokeStyle=`rgba(255,180,84,${a.a*.6})`;cx.beginPath();cx.arc(a.x,a.y,5+(1-a.a)*34,0,7);cx.stroke();}
+  }
+  if(!reduce)requestAnimationFrame(frame);
+}
+size();frame();
+addEventListener('resize',()=>{size();if(reduce)frame();});
+if(!reduce){
+  setInterval(()=>{if(!document.hidden&&nodes.length)nodes[Math.random()*nodes.length|0].a=1;},2200);
+  addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;const g=$('#glow');g.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;},{passive:true});
+  addEventListener('pointerleave',()=>{mouse.x=mouse.y=-999;});
+}
+
+/* ---- typed headline ---- */
+const phrases=['SOC analysis.','threat detection.','log investigation.','blue-team security.'],tEl=$('#typed');
+if(!reduce){
+  let p=0,c=0,del=false;
+  (function tick(){
+    const w=phrases[p];c+=del?-1:1;tEl.textContent=w.slice(0,c);
+    let t=del?35:70;
+    if(!del&&c===w.length){del=true;t=1500;}
+    else if(del&&c===0){del=false;p=(p+1)%phrases.length;t=350;}
+    setTimeout(tick,t);
+  })();
+}
+
+/* ---- interactive terminal ---- */
+const out=$('#tout'),inp=$('#tin');
+const a=(h,t)=>`<a href="${h}" target="_blank" rel="noopener noreferrer">${t}</a>`;
+const cmds={
+  help:()=>`Commands: <b>about</b> <b>skills</b> <b>projects</b> <b>education</b> <b>contact</b> <b>github</b> <b>clear</b>`,
+  about:()=>`Muhammad Umair Khan. Software Engineering graduate (University of Sialkot, 2026) building toward a SOC analyst role.`,
+  skills:()=>`Focus areas: SOC fundamentals, alert triage, incident response, networking, Windows, Linux, SIEM concepts, log analysis.<br><span class="dim">Learning in progress, not a claim of professional proficiency.</span>`,
+  projects:()=>`3 planned, 0 completed: Home SOC Lab, Phishing Email Analysis, SIEM Alert Investigation. Links will be added when each is finished.`,
+  education:()=>`BS Software Engineering, University of Sialkot, completed 2026. No certifications listed yet.`,
+  contact:()=>`Email: ${a('mailto:'+EMAIL,EMAIL)}`,
+  github:()=>a(GH,GH),
+  clear:()=>{out.innerHTML='';return null;}
+};
+function print(h,cls){const d=document.createElement('div');if(cls)d.className=cls;d.innerHTML=h;out.appendChild(d);out.scrollTop=out.scrollHeight;}
+const hist=[];let hi=0;
+function run(raw){
+  const c=raw.trim().toLowerCase();if(!c)return;
+  const echo=document.createElement('div');echo.className='cmd';echo.textContent='$ '+raw.trim();out.appendChild(echo);
+  hist.push(c);hi=hist.length;
+  if(cmds[c]){const r=cmds[c]();if(r)print(r);}
+  else print(`command not found. Type <b>help</b> to see what is available.`,'dim');
+  out.scrollTop=out.scrollHeight;
+}
+$('#tform').addEventListener('submit',e=>{e.preventDefault();run(inp.value);inp.value='';});
+inp.addEventListener('keydown',e=>{
+  if(e.key==='ArrowUp'&&hist.length){e.preventDefault();hi=Math.max(0,hi-1);inp.value=hist[hi];}
+  else if(e.key==='ArrowDown'&&hist.length){e.preventDefault();hi=Math.min(hist.length,hi+1);inp.value=hist[hi]||'';}
+  else if(e.key==='Tab'){e.preventDefault();const m=Object.keys(cmds).filter(k=>k.startsWith(inp.value.toLowerCase()));if(m.length===1)inp.value=m[0];}
+});
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-cmd]');if(b)run(b.dataset.cmd);});
+out.addEventListener('click',()=>inp.focus({preventScroll:true}));
+const boot=[()=>print('Welcome. Type a command or tap one below.','dim'),()=>run('help'),()=>run('about')];
+boot.forEach((f,i)=>reduce?f():setTimeout(f,500+i*750));
+
+/* ---- alert triage demo (made-up data) ---- */
+const alerts=[
+ {sev:'High',hi:1,msg:'47 failed logins for "admin" from 203.0.113.45 in 2 minutes, followed by 1 successful login.',ans:'escalate',
+  why:'Many failures then a success from one external address suggests a brute-force or password-spray that may have worked. Verify the account, reset credentials, and review what the session did.'},
+ {sev:'Medium',msg:'Port sweep across 120 internal hosts from 10.0.5.20 at 02:00. That host is the registered vulnerability scanner, and a scan is on the change calendar for this window.',ans:'close',
+  why:'This matches an approved, scheduled scan. Confirm against the schedule before closing. The same pattern from an unknown host would be escalated.'},
+ {sev:'High',hi:1,msg:'WINWORD.EXE started powershell.exe with a base64-encoded command on HR-PC-07.',ans:'escalate',
+  why:'Office apps launching PowerShell with encoded commands is a common malicious-document pattern. If confirmed, isolate the host and collect the document and full command line.'},
+ {sev:'Low',msg:'One failed login for jsmith, then a successful login 20 seconds later from the same IP and device.',ans:'close',
+  why:'A typo followed by a correct password from the same device is normal. Note it and move on unless failures repeat.'}
+];
+let right=0,done=0;
+const demo=$('#demo'),score=$('#score');
+function build(){
+  right=0;done=0;demo.innerHTML='';score.innerHTML='Score: <strong>0 / 0</strong>';
+  alerts.forEach((al,i)=>{
+    const el=document.createElement('div');el.className='alert'+(al.hi?' high':'');
+    el.innerHTML=`<span class="sev">Severity: ${al.sev}</span><p>${al.msg}</p><div class="row"><button class="btn" data-a="escalate">Escalate</button><button class="btn" data-a="close">Close as benign</button></div>`;
+    el.addEventListener('click',e=>{
+      const b=e.target.closest('[data-a]');if(!b||b.disabled)return;
+      $$('button',el).forEach(x=>x.disabled=true);
+      const ok=b.dataset.a===al.ans;done++;if(ok)right++;
+      el.classList.add(ok?'ok':'bad');
+      const w=document.createElement('p');w.className='why';
+      w.innerHTML=`<b>${ok?'Correct.':'Not quite.'}</b> ${al.why}`;el.appendChild(w);
+      score.innerHTML=`Score: <strong>${right} / ${done}</strong>`;
+    });
+    demo.appendChild(el);
+  });
+}
+build();$('#reset').addEventListener('click',build);
+
+/* ---- tilt cards (mouse only) ---- */
+$$('.tilt').forEach(el=>{
+  el.addEventListener('pointermove',e=>{
+    if(reduce||e.pointerType!=='mouse')return;
+    const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+    el.style.setProperty('--rx',((.5-y)*7)+'deg');el.style.setProperty('--ry',((x-.5)*9)+'deg');
+    el.style.setProperty('--gx',x*100+'%');el.style.setProperty('--gy',y*100+'%');
+  });
+  el.addEventListener('pointerleave',()=>{el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');});
+});
+
+/* ---- reveal on scroll, active nav link, progress bar ---- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
+const links=$$('.links a'),so=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting)links.forEach(l=>l.setAttribute('aria-current',l.getAttribute('href')==='#'+e.target.id));
+}),{rootMargin:'-40% 0px -55% 0px'});
+$$('main section').forEach(s=>so.observe(s));
+const bar=$('#bar');
+addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.transform=`scaleX(${m>0?scrollY/m:0})`;},{passive:true});
+
+/* ---- mobile menu, copy email ---- */
+const menu=$('#menu'),ls=$('#links');
+menu.addEventListener('click',()=>{const o=ls.classList.toggle('open');menu.setAttribute('aria-expanded',o);});
+ls.addEventListener('click',e=>{if(e.target.closest('a')){ls.classList.remove('open');menu.setAttribute('aria-expanded','false');}});
+const toast=$('#toast');
+function say(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2000);}
+$('#copy').addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(EMAIL);say('Email address copied');}
+  catch{const t=document.createElement('textarea');t.value=EMAIL;document.body.appendChild(t);t.select();
+    try{document.execCommand('copy');say('Email address copied');}catch{say('Copy failed. Email: '+EMAIL);}t.remove();}
+});
+})();
+</script>
 </body>
 </html>
